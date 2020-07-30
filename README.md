@@ -21,8 +21,8 @@ This is an infrastructure diagram of how everything works together.
 
 ![infrastructure diagram](/Images/androidScreenShot3.png)
 ![infrastructure diagram](/Images/androidScreenShot4.png)
-![infrastructure diagram](/Images/androidScreenShot5.png)
 ![infrastructure diagram](/Images/androidScreenShot6.png)
+![infrastructure diagram](/Images/androidScreenShot5.png)
 ![infrastructure diagram](/Images/androidScreenShot2.png)
 ![infrastructure diagram](/Images/androidScreenShot1.png)
 
