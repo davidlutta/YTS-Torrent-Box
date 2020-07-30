@@ -1,0 +1,58 @@
+body{
+    margin: 0;
+}
+.container{
+    margin-top: 20px;
+}
+.flexRow {
+     display: flex;
+ }
+.poster{
+    flex: 40%;
+}
+.poster img{
+    height: 500px;
+    width: 400px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    margin-right: 10px;
+}
+
+.details{
+    flex: 60%;
+}
+.details .year{
+    color: var(--bg-purple);
+    font-size: 20px;
+}
+.details .rating{
+    color: #e3e3e3;
+    font-weight: bold;
+    font-size: 20px;
+}
+.details .purpleBold{
+    color: var(--bg-purple);
+    font-size: 15px;
+    font-weight: bold;
+}
+hr{
+    border: 1px solid var(--bg-purple);
+}
+
+.blockRow{
+    display: block;
+}
+/*For Small Screens*/
+@media only screen and (max-width:800px){
+    .flexRow{
+        display: block;
+    }
+    .poster img{
+        height: 400px;
+        width: 300px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

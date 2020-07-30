@@ -1,0 +1,76 @@
+.button {
+    color: var(--text-secondary);
+    background-color: #6E4FC4;
+    font-weight: 300;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 40px;
+    height: auto;
+    width: 120px;
+    padding: 0 40px;
+    margin: 10px 10px 5px 0;
+    display: inline-block;
+    appearance: none;
+    cursor: pointer;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+.button:visited {
+    color: #1F1638;
+}
+.button:hover,
+.button:focus {
+    background-color: #6649B8;
+    text-decoration: none;
+    outline: none;
+}
+.button:active,
+.button.active,
+.button.is-active {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    background-color: #433078;
+    color: var(--text-secondary);
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.button.disabled,
+.button.is-disabled,
+.button:disabled {
+    top: 0 !important;
+    background: #eee !important;
+    border: 1px solid #ddd !important;
+    text-shadow: 0 1px 1px white !important;
+    color: #ccc !important;
+    cursor: default !important;
+    appearance: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    opacity: 0.8 !important;
+}
+
+.button-glow {
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: glowing;
+    animation-name: glowing;
+}
+.button-glow:active,
+.button-glow.active,
+.button-glow.is-active {
+    -webkit-animation-name: none;
+    animation-name: none;
+}
+.button-rounded {
+    border-radius: 5px;
+}

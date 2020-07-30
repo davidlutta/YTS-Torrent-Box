@@ -1,0 +1,6 @@
+# Created by .ignore support plugin (hsz.mobi)
+node_modules/
+/download-server.iml
+/.idea
+.env
+/serviceAccount.json

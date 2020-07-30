@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">ytsApp</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="download">Downloads</string>
+    <string name="background_image">background Image</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="view_all_movies">View All Movies</string>
+    <string name="yop">Year: 2010</string>
+    <string name="runtime">RunTime: 200mins</string>
+    <string name="downloads">downloads</string>
+    <string name="torrents">Torrents</string>
+    <string name="movieDownloads">Downloads</string>
+    <string name="search_movie">Eg: Captain America</string>
+    <string name="percentage">0% downloaded</string>
+    <string name="browserMovies">Browse Movies</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="noMovieFound">Movie Not Found</string>
+    <string name="browse_movies">Browse Movies</string>
+    <string name="download_string">Download 720p</string>
+    <string name="failed_to_retrieve_movies">Failed To Retrieve Movies\nCheck Internet Connection</string>
+</resources>

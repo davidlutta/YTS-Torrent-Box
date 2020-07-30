@@ -1,0 +1,29 @@
+.row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.row .movieCardPoster {
+    flex: 20%;
+}
+
+.row .movieCardDetails {
+    flex: 80%;
+}
+
+.movieCardPoster img{
+    height: 150px;
+    width: 100px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    margin: 0 10px;
+}
+
+.movieTitle{
+    font-size: 15px;
+    font-weight: bold;
+}
+.fontAwesomeIcon{
+    cursor: pointer;
+}

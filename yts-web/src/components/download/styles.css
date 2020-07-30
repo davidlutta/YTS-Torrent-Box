@@ -1,0 +1,25 @@
+.container{
+    margin: 0 10px;
+}
+.flexRow {
+    display: flex;
+}
+.downloading{
+    flex: 50%;
+}
+.requests{
+    flex: 50%;
+}
+.title{
+    font-weight: bold;
+    font-size: 40px;
+}
+.sub-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+@media only screen and (max-width:600px) {
+    .flexRow{
+        display: block;
+    }
+}
