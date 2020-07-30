@@ -36,7 +36,7 @@ This is an infrastructure diagram of how everything works together.
 4. Set up the download server.
 5. Install the android app on your phone or set up the web client or do both !
 
-#Developed By
+# Developed By
 David Ezekiel Lutta (davidlutta2010@gmail.com)
 
 
