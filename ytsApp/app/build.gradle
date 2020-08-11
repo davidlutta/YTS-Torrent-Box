@@ -35,7 +35,7 @@ dependencies {
     def room_version = "2.2.5"
 
     // Leak Canary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+    //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 
     implementation "android.arch.paging:runtime:$paging_version"
     implementation 'com.google.code.gson:gson:2.8.5'

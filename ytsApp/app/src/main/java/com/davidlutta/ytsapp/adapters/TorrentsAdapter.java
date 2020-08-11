@@ -74,6 +74,7 @@ public class TorrentsAdapter extends RecyclerView.Adapter<TorrentsAdapter.Torren
 
         @Override
         protected void onClickItem() {
+            Torrent selectedTorrent = getSelectedTorrent(getAdapterPosition());
             String title = String.format("%s [%s %s]", movie.getTitle(), selectedTorrent.getType(), selectedTorrent.getQuality());
             MovieData data = new MovieData(selectedTorrent.getHash(), title, movie.getMediumCoverImage(), selectedTorrent.getUrl());
             Toasty.info(itemView.getContext(), "Uploading to Server...", Toasty.LENGTH_SHORT, true).show();

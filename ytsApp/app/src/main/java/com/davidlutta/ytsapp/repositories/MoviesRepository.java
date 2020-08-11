@@ -10,13 +10,13 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.davidlutta.ytsapp.database.MoviesDatabase;
-import com.davidlutta.ytsapp.database.express.ExpressDao;
-import com.davidlutta.ytsapp.database.yts.MoviesDao;
 import com.davidlutta.ytsapp.api.ApiResponse;
 import com.davidlutta.ytsapp.api.ExpressApi;
 import com.davidlutta.ytsapp.api.MoviesApi;
 import com.davidlutta.ytsapp.api.RetrofitService;
+import com.davidlutta.ytsapp.database.MoviesDatabase;
+import com.davidlutta.ytsapp.database.express.ExpressDao;
+import com.davidlutta.ytsapp.database.yts.MoviesDao;
 import com.davidlutta.ytsapp.models.download.MovieDataResponse;
 import com.davidlutta.ytsapp.models.download.MovieDownload;
 import com.davidlutta.ytsapp.models.download.MovieDownloadRequest;
@@ -83,6 +83,7 @@ public class MoviesRepository {
             @NonNull
             @Override
             public LiveData<ApiResponse<MoviesResponse>> createCall() {
+                new DeleteMoviesTableAsyncTask(moviesDao).execute();
                 ArrayMap<String, String> options = new ArrayMap<>();
                 options.put(Constants.LIMIT, "10");
                 options.put(Constants.RATING, "8");
@@ -96,31 +97,6 @@ public class MoviesRepository {
             }
         }.getAsLiveData();
     }
-/*    public MutableLiveData<List<Movies>> getPopularMovies() {
-        final MutableLiveData<List<Movies>> movieData = new MutableLiveData<>();
-        Map<String, String> options = new HashMap<>();
-        options.put(Constants.LIMIT, "10");
-        options.put(Constants.RATING, "8");
-        options.put(Constants.SORT, "downloadcount");
-        moviesApi.getMovies(options).enqueue(new Callback<MoviesResponse>() {
-            @Override
-            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        List<Movies> moviesList = response.body().getData().getMovies();
-                        movieData.postValue(moviesList);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MoviesResponse> call, Throwable t) {
-                Log.d(TAG, "GetPopularMovies: onFailure: " + t.getMessage());
-                t.printStackTrace();
-            }
-        });
-        return movieData;
-    }*/
 
     public MutableLiveData<List<Movies>> searchMovie(String query) {
         final MutableLiveData<List<Movies>> movieData = new MutableLiveData<>();
@@ -150,85 +126,8 @@ public class MoviesRepository {
         return movieData;
     }
 
-    /*public MutableLiveData<Movie> getMovie(String movieId) {
-        final MutableLiveData<Movie> movieData = new MutableLiveData<>();
-        moviesApi.getMovie(movieId).enqueue(new Callback<MovieResponse>() {
-            @Override
-            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        movieData.postValue(response.body().getData().getMovie());
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MovieResponse> call, Throwable t) {
-                Log.d(TAG, "GetMovie: onFailure: " + t.getMessage());
-                t.printStackTrace();
-            }
-        });
-        return movieData;
-    }*/
-
-    /*public LiveData<Resource<Movie>> getMovie(String movieId) {
-        return new NetworkBoundResource<Movie, MovieResponse>(AppExecutors.getInstance()) {
-            @Override
-            public void saveCallResult(@NonNull MovieResponse item) {
-                if (item.getData() != null) {
-                    moviesDao.insertMovie(item.getData().getMovie());
-                }
-            }
-
-            @Override
-            public boolean shouldFetch(@Nullable Movie data) {
-                return data == null || movieListLimit.shouldFetch(movieId);
-            }
-
-            @NonNull
-            @Override
-            public LiveData<Movie> loadFromDb() {
-                return moviesDao.getMovie(movieId);
-            }
-
-            @NonNull
-            @Override
-            public LiveData<ApiResponse<MovieResponse>> createCall() {
-                return moviesApi.getMovie(movieId);
-            }
-
-            @Override
-            public void onFetchFailed() {
-                Log.d(TAG, "onFetchFailed: -----------------------> Failed To Fetch Movie <-----------------------");
-            }
-        }.getAsLiveData();
-    }*/
-
-    /*public MutableLiveData<List<MovieDownload>> getDownloadingMovies() {
-        final MutableLiveData<List<MovieDownload>> movieData = new MutableLiveData<>();
-        expressApi.getDownloadingMovies().enqueue(new Callback<List<MovieDownload>>() {
-            @Override
-            public void onResponse(Call<List<MovieDownload>> call, Response<List<MovieDownload>> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        List<MovieDownload> movieDownloads = response.body();
-                        Collections.reverse(movieDownloads);
-                        movieData.postValue(movieDownloads);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<MovieDownload>> call, Throwable t) {
-                Log.d(TAG, "GetDownloadingMovies: onFailure: " + t.getMessage());
-                t.printStackTrace();
-            }
-        });
-        return movieData;
-    }*/
-
     public LiveData<Resource<List<MovieDownload>>> getDownloadingMovies(String owner) {
-        return new NetworkBoundResource<List<MovieDownload>, List<MovieDownload>>(AppExecutors.getInstance()){
+        return new NetworkBoundResource<List<MovieDownload>, List<MovieDownload>>(AppExecutors.getInstance()) {
             @Override
             public void saveCallResult(@NonNull List<MovieDownload> item) {
                 if (item.size() > 0) {
@@ -262,36 +161,13 @@ public class MoviesRepository {
         }.getAsLiveData();
     }
 
-    /*public MutableLiveData<List<MovieDownload>> getDownloadRequestMovies() {
-        final MutableLiveData<List<MovieDownload>> movieData = new MutableLiveData<>();
-        expressApi.getDownloadRequestMovies().enqueue(new Callback<List<MovieDownload>>() {
-            @Override
-            public void onResponse(Call<List<MovieDownload>> call, Response<List<MovieDownload>> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        List<MovieDownload> movieDownloads = response.body();
-                        Collections.reverse(movieDownloads);
-                        movieData.postValue(movieDownloads);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<MovieDownload>> call, Throwable t) {
-                Log.d(TAG, "GetDownloadRequestMovies: onFailure: " + t.getMessage());
-                t.printStackTrace();
-            }
-        });
-        return movieData;
-    }*/
-
     public LiveData<Resource<List<MovieDownloadRequest>>> getDownloadRequestMovies(String owner) {
         return new NetworkBoundResource<List<MovieDownloadRequest>, List<MovieDownloadRequest>>(AppExecutors.getInstance()) {
             @Override
             public void saveCallResult(@NonNull List<MovieDownloadRequest> item) {
                 if (item.size() > 0) {
                     expressDao.insertDownloadRequestMovie(item);
-                }else {
+                } else {
                     Log.d(TAG, "saveCallResult: getDownloadRequestMovies: NO ITEMS TO SAVE");
                 }
             }
@@ -388,6 +264,21 @@ public class MoviesRepository {
         @Override
         protected Void doInBackground(MovieDownloadRequest... movieDownloadRequests) {
             expressDao.deleteDownloadRequestMovie(movieDownloadRequests[0]);
+            return null;
+        }
+    }
+
+    // Async Task to delete the movies Table
+    private static class DeleteMoviesTableAsyncTask extends AsyncTask<Void, Void, Void> {
+        private MoviesDao moviesDao;
+
+        public DeleteMoviesTableAsyncTask(MoviesDao moviesDao) {
+            this.moviesDao = moviesDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            moviesDao.deleteMoviesTable();
             return null;
         }
     }
