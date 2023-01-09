@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "firebase-admin": "^8.12.1",
+    "firebase-admin": "^11.4.1",
     "node-schedule": "^1.3.2",
     "transmission": "^0.4.10"
   }
