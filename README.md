@@ -37,7 +37,7 @@ This is an infrastructure diagram of how everything works together.
 5. Install the android app on your phone or set up the web client or do both !
 
 # Developed By
-David Ezekiel Lutta (davidlutta2010@gmail.com)
+David Ezekiel Lutta
 
 
 Feel free to contact me incase you have any questions.
